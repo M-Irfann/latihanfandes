@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f9fafb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .cart-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 650px;
+    }
+
+    .cart-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #333;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .item-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+    }
+
+    .item-details {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .item-name {
+      font-weight: 600;
+      font-size: 18px;
+      color: #111827;
+    }
+
+    .item-price {
+      color: #6b7280;
+      font-size: 15px;
+    }
+
+    .item-qty {
+      text-align: center;
+    }
+
+    .item-qty input {
+      width: 60px;
+      padding: 6px 8px;
+      font-size: 15px;
+      text-align: center;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+    }
+
+    .subtotal {
+      text-align: right;
+      font-size: 18px;
+      font-weight: 500;
+      color: #111827;
+      margin-bottom: 20px;
+    }
+
+    .checkout-btn {
+      display: inline-block;
+      background-color: #3b82f6;
+      color: white;
+      padding: 12px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      float: right;
+    }
+
+    .checkout-btn:hover {
+      background-color: #2563eb;
+    }
+
+    @media (max-width: 600px) {
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .item-left {
+        flex-direction: row;
+        width: 100%;
+      }
+
+      .item-qty {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        text-align: center;
+        float: none;
+      }
+
+      .subtotal {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cart-container">
+    <h1 class="cart-title">Cart Page</h1>
+
+    <div class="cart-item">
+      <div class="item-left">
+        <img src="https://via.placeholder.com/80" alt="Product">
+        <div class="item-details">
+          <div class="item-name">Wireless Headphones</div>
+          <div class="item-price">$59.99</div>
+        </div>
+      </div>
+      <div class="item-qty">
+        <input type="number" value="1" min="1">
+      </div>
+    </div>
+
+    <div class="subtotal">Subtotal: $59.99</div>
+
+    <button class="checkout-btn">Checkout</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2a6eb8;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #2a6eb8;
+        }
+        
+        /* Product section styles */
+        .product-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        
+        .breadcrumb {
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .breadcrumb a {
+            text-decoration: none;
+            color: #666;
+        }
+        
+        .breadcrumb span {
+            margin: 0 5px;
+            color: #999;
+        }
+        
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        
+        .product-gallery {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 20px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+        
+        .main-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            border: 1px solid #eee;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .thumbnail:hover {
+            border-color: #2a6eb8;
+        }
+        
+        .thumbnail img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .product-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stars {
+            color: #f7c427;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        
+        .review-count {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .product-price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2a6eb8;
+            margin-bottom: 15px;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+        
+        .discount-badge {
+            background-color: #e63946;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+        
+        .product-availability {
+            color: #28a745;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .key-features {
+            margin-bottom: 20px;
+        }
+        
+        .key-features h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .key-features ul {
+            padding-left: 20px;
+            color: #555;
+        }
+        
+        .key-features li {
+            margin-bottom: 5px;
+        }
+        
+        .color-options {
+            margin-bottom: 20px;
+        }
+        
+        .color-options h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .color-selector {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .color-option.selected {
+            border-color: #2a6eb8;
+        }
+        
+        .color-red {
+            background-color: #e63946;
+        }
+        
+        .color-blue {
+            background-color: #457b9d;
+        }
+        
+        .color-black {
+            background-color: #1d3557;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .quantity-selector h3 {
+            margin-right: 15px;
+            font-size: 18px;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            background: #f5f5f5;
+            border: none;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .quantity-btn:hover {
+            background: #eee;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: #2a6eb8;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e5ea0;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #2a6eb8;
+            color: #2a6eb8;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .additional-actions {
+            display: flex;
+            gap: 20px;
+            color: #666;
+        }
+        
+        .action-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .action-link:hover {
+            color: #2a6eb8;
+        }
+        
+        .delivery-info {
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .delivery-info h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .delivery-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .delivery-option i {
+            margin-right: 10px;
+            color: #2a6eb8;
+        }
+        
+        /* Product details tabs */
+        .product-details {
+            margin-top: 40px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid #2a6eb8;
+            color: #2a6eb8;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .specifications-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .specifications-table tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+        
+        .specifications-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .specifications-table td:first-child {
+            width: 30%;
+            font-weight: 500;
+        }
+        
+        /* Reviews section */
+        .review-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .reviewer-name {
+            font-weight: 500;
+        }
+        
+        .review-date {
+            color: #999;
+        }
+        
+        .review-rating {
+            margin-bottom: 10px;
+            color: #f7c427;
+        }
+        
+        /* Similar products section */
+        .similar-products {
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #2a6eb8;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-img img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+        
+        .card-content {
+            padding: 15px;
+        }
+        
+        .card-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            height: 44px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        
+        .card-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2a6eb8;
+        }
+        
+        .card-rating {
+            color: #f7c427;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        /* Footer styles */
+        footer {
+            background-color: #1d3557;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 20px;
+            text-align: center;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .product-container {
+                flex-direction: column;
+            }
+            
+            .product-gallery {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .additional-actions {
+                justify-content: space-between;
+            }
+            
+            .tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">ShopEase</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Deals</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="product-section">
+            <div class="breadcrumb">
+                <a href="#">Home</a>
+                <span>›</span>
+                <a href="#">Electronics</a>
+                <span>›</span>
+                <a href="#">Audio</a>
+                <span>›</span>
+                Premium Wireless Headphones
+            </div>
+            
+            <div class="product-container">
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="/api/placeholder/600/600" alt="Premium Wireless Headphones" />
+                    </div>
+                    <div class="thumbnail-container">
+                        <div class="thumbnail">
+                            <img src="/api/placeholder/150/150" alt="Headphones front view" />
+                        </div>
+                        <div class="thumbnail">
+                            <img src="/api/placeholder/150/150" alt="Headphones side view" />
+                        </div>
+                        <div class="thumbnail">
+                            <img src="/api/placeholder/150/150" alt="Headphones with case" />
+                        </div>
+                        <div class="thumbnail">
+                            <img src="/api/placeholder/150/150" alt="Headphones detail" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-info">
+                    <h1 class="product-title">Premium Wireless Noise-Cancelling Headphones</h1>
+                    
+                    <div class="product-rating">
+                        <div class="stars">★★★★☆</div>
+                        <div class="review-count">4.2 (128 reviews)</div>
+                    </div>
+                    
+                    <div class="product-price">
+                        $249.99
+                        <span class="old-price">$329.99</span>
+                        <span class="discount-badge">25% OFF</span>
+                    </div>
+                    
+                    <p class="product-availability">In Stock - Ships within 24 hours</p>
+                    
+                    <div class="product-description">
+                        Experience studio-quality sound with our premium wireless headphones. Featuring advanced noise-cancellation technology, these headphones deliver immersive audio while blocking out unwanted ambient noise. With up to 30 hours of battery life and ultra-comfortable ear cushions, enjoy your music, podcasts, and calls like never before.
+                    </div>
+                    
+                    <div class="key-features">
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Active noise cancellation technology</li>
+                            <li>Up to 30 hours of battery life</li>
+                            <li>Bluetooth 5.0 with multipoint connection</li>
+                            <li>High-resolution audio certification</li>
+                            <li>Built-in microphone for calls and voice assistant</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="color-options">
+                        <h3>Color</h3>
+                        <div class="color-selector">
+                            <div class="color-option color-black selected" title="Black"></div>
+                            <div class="color-option color-blue" title="Navy Blue"></div>
+                            <div class="color-option color-red" title="Red"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <h3>Quantity</h3>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" id="decrease">-</button>
+                            <input type="text" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn" id="increase">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-outline">Buy Now</button>
+                    </div>
+                    
+                    <div class="additional-actions">
+                        <div class="action-link">
+                            <span>♡</span> Add to Wishlist
+                        </div>
+                        <div class="action-link">
+                            <span>↔</span> Compare
+                        </div>
+                        <div class="action-link">
+                            <span>✉</span> Share
+                        </div>
+                    </div>
+                    
+                    <div class="delivery-info">
+                        <h3>Delivery Options</h3>
+                        <div class="delivery-option">
+                            <span>🚚</span> Free standard shipping on orders over $50
+                        </div>
+                        <div class="delivery-option">
+                            <span>⚡</span> Express delivery available (1-2 business days)
+                        </div>
+                        <div class="delivery-option">
+                            <span>🏪</span> Store pickup available at select locations
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="product-details">
+            <div class="tabs">
+                <div class="tab active" data-tab="description">Description</div>
+                <div class="tab" data-tab="specifications">Specifications</div>
+                <div class="tab" data-tab="reviews">Reviews</div>
+                <div class="tab" data-tab="faq">FAQ</div>
+            </div>
+            
+            <div class="tab-content active" id="description">
+                <p>Immerse yourself in exceptional sound quality with our Premium Wireless Headphones. Designed for audiophiles and casual listeners alike, these headphones combine cutting-edge technology with superior comfort for an unmatched listening experience.</p>
+                
+                <p>The advanced active noise cancellation technology uses multiple microphones to detect and neutralize outside noise, creating a peaceful listening environment even in the busiest of settings. Switch between Ambient Mode when you need to hear your surroundings and full ANC when you want to focus solely on your audio.</p>
+                
+                <p>With up to 30 hours of battery life on a single charge, these headphones are perfect for long commutes, flights, or work sessions. When you do need to recharge, fast charging gives you 5 hours of playback from just 10 minutes of charging.</p>
+                
+                <p>The ergonomic design and premium materials ensure lasting comfort, even during extended use. The memory foam ear cushions conform to your ears, while the adjustable headband provides a secure yet comfortable fit for any head size.</p>
+                
+                <p>Control your audio experience with intuitive touch controls on the ear cups or use voice commands through your preferred voice assistant. The multi-point connection allows you to seamlessly switch between two connected devices without missing a beat.</p>
+            </div>
+            
+            <div class="tab-content" id="specifications">
+                <table class="specifications-table">
+                    <tr>
+                        <td>Driver Size</td>
+                        <td>40mm Dynamic Drivers</td>
+                    </tr>
+                    <tr>
+                        <td>Frequency Response</td>
+                        <td>5Hz - 40kHz</td>
+                    </tr>
+                    <tr>
+                        <td>Impedance</td>
+                        <td>32 Ohms</td>
+                    </tr>
+                    <tr>
+                        <td>Battery Life</td>
+                        <td>Up to 30 hours (ANC on), 40 hours (ANC off)</td>
+                    </tr>
+                    <tr>
+                        <td>Charging Time</td>
+                        <td>2 hours full charge, 10 minutes for 5 hours playback</td>
+                    </tr>
+                    <tr>
+                        <td>Bluetooth Version</td>
+                        <td>Bluetooth 5.2</td>
+                    </tr>
+                    <tr>
+                        <td>Bluetooth Range</td>
+                        <td>Up to 10m (33ft)</td>
+                    </tr>
+                    <tr>
+                        <td>Audio Codecs</td>
+                        <td>SBC, AAC, aptX HD, LDAC</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>250g</td>
+                    </tr>
+                    <tr>
+                        <td>Dimensions</td>
+                        <td>180 x 165 x 80mm</td>
+                    </tr>
+                    <tr>
+                        <td>Water Resistance</td>
+                        <td>IPX4 (sweat and splash resistant)</td>
+                    </tr>
+                    <tr>
+                        <td>Controls</td>
+                        <td>Touch controls, Voice assistant compatible</td>
+                    </tr>
+                    <tr>
+                        <td>Microphones</td>
+                        <td>8 microphones (4 for calls, 4 for ANC)</td>
+                    </tr>
+                    <tr>
+                        <td>In the Box</td>
+                        <td>Headphones, Carrying case, USB-C charging cable, 3.5mm audio cable, User manual</td>
+                    </tr>
+                    <tr>
+                        <td>Warranty</td>
+                        <td>2-year manufacturer warranty</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="reviews">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">Alex M.</div>
+                        <div class="review-date">April 15, 2025</div>
+                    </div>
+                    <div class="review-rating"<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    
+</body>
+</html>>★★★★★</div>
+                    <p>These headphones are absolutely worth every penny! The noise cancellation is the best I've experienced, and I've tried many premium brands. Battery life is impressive too - I only need to charge them once a week with daily use. Sound quality is balanced and detailed with just the right amount of bass.</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">Sarah J.</div>
+                        <div class="review-date">April 2, 2025</div>
+                    </div>
+                    <div class="review-rating">★★★★☆</div>
+                    <p>Great headphones overall. The sound quality is excellent and the noise cancellation works well in most environments. My only complaint is that they're a bit tight on my head after a few hours of wear. Hoping they'll loosen up over time. The carrying case is a nice bonus and feels very premium.</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">Marcus T.</div>
+                        <div class="review-date">March 28, 2025</div>
+                    </div>
+                    <div class="review-rating">★★★☆☆</div>
+                    <p>Sound quality is excellent, but I'm disappointed with the touch controls. They're too sensitive and I often accidentally pause or skip tracks when adjusting the fit. Battery life is as advertised though, which is impressive. Would be 5 stars if the controls were better designed.</p>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="faq">
+                <div class="faq-item">
+                    <h3>How do I pair these headphones with my device?</h3>
+                    <p>To pair the headphones, press and hold the power button for 3 seconds until the LED indicator flashes blue. Then, go to the Bluetooth settings on your device and select "Premium Wireless Headphones" from the available devices list.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can I use these headphones while they're charging?</h3>
+                    <p>Yes, you can use the headphones while they're charging using the included USB-C cable. However, the noise cancellation feature may be slightly less effective during charging.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Are replacement ear pads available?</h3>
+                    <p>Yes, replacement ear pads are available for purchase separately. You can find them in the Accessories section of our website or contact our customer service for assistance.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can I connect to multiple devices simultaneously?</h3>
+                    <p>Yes, these headphones support multipoint connection, allowing you to connect to two devices at the same time. This makes it easy to switch between, for example, your laptop and smartphone without re-pairing.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>How do I activate the voice assistant?</h3>
+                    <p>To activate your device's voice assistant, double-tap and hold on the right ear cup. The headphones are compatible with Siri, Google Assistant, and Amazon Alexa.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="similar-products">
+            <h2 class="section-title">You May Also Like</h2>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/300/300" alt="Wireless Earbuds" />
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Premium Wireless Earbuds with Charging Case</div>
+                        <div class="card-price">$129.99</div>
+                        <div class="card-rating">★★★★★</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/300/300" alt="Bluetooth Speaker" />
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Portable Bluetooth Speaker with 360° Sound</div>
+                        <div class="card-price">$89.99</div>
+                        <div class="card-rating">★★★★☆</div>
+                    </div>

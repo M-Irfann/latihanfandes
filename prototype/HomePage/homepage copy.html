@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    
+    header {
+      display: flex;
+      position: fixed;
+      left: 0;
+      right: 0;
+      padding: 1rem 2rem;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    header.scrolled {
+      padding: 0.7rem 2rem;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #ff7700;
+    }
+    
+    .logo img {
+      width: 40px;
+      height: 40px;
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover img {
+      transform: rotate(5deg);
+    }
+    
+    .search-bar {
+      flex-grow: 1;
+      margin: 0 2rem;
+      position: relative;
+    }
+    
+    .search-bar input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background-color: #f5f5f5;
+    }
+    
+    .search-bar::before {
+      content: "🔍";
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      font-size: 1rem;
+    }
+    
+    .search-bar input:focus {
+      outline: none;
+      border-color: #ff7700;
+      box-shadow: 0 0 0 2px rgba(255, 119, 0, 0.2);
+      background-color: white;
+    }
+    
+    .login-btn {
+      padding: 0.6rem 1.5rem;
+      background-color: #ff7700;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(255, 119, 0, 0.3);
+    }
+    
+    .login-btn:hover {
+      background-color: #e66d00;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(255, 119, 0, 0.4);
+    }
+    
+    .banner {
+      padding: 10rem 2rem 5rem;
+      background: linear-gradient(135deg, #ff7700, #ff9e40);
+      color: white;
+      text-align: center;
+      border-radius: 0 0 30px 30px;
+      margin-bottom: 2rem;
+    }
+    
+    .banner h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .banner p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      opacity: 0.9;
+    }
+    
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 0 2rem 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .category {
+      padding: 0.6rem 1.5rem;
+      background-color: white;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+    }
+    
+    .category.active {
+      background-color: #ff7700;
+      color: white;
+      border-color: #ff7700;
+    }
+    
+    .category:hover:not(.active) {
+      background-color: #f0f0f0;
+      transform: translateY(-2px);
+    }
+    
+    .products {
+      padding: 1rem 2rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .product-card {
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-image {
+      height: 200px;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .product-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    
+    .product-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .product-price {
+      font-weight: bold;
+      color: #ff7700;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .product-description {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    
+    .product-button {
+      padding: 0.6rem;
+      background-color: #ff7700;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    
+    .product-button:hover {
+      background-color: #e66d00;
+    }
+    
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 3rem 2rem;
+      margin-top: 2rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .footer-section h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #ff7700;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-section ul li a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    .footer-section ul li a:hover {
+      color: #ff7700;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .products {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+      
+      header.scrolled {
+        padding: 0.7rem 1rem;
+      }
+      
+      .search-bar {
+        margin: 0 1rem;
+      }
+      
+      .banner {
+        padding: 8rem 1rem 3rem;
+      }
+      
+      .banner h1 {
+        font-size: 2rem;
+      }
+      
+      .products {
+        padding: 1rem;
+        gap: 1rem;
+      }
+      
+      .footer-section {
+        flex: 100%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      .logo {
+        margin-bottom: 0.5rem;
+      }
+      
+      .search-bar {
+        width: 100%;
+        margin: 0.5rem 0;
+      }
+      
+      .banner {
+        padding-top: 12rem;
+      }
+      
+      .products {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="/api/placeholder/40/40" alt="Logo"> ShopEase
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search for products...">
+      </div>
+      <div class="login-btn">Login / Register</div>
+    </header>
+    
+    <div class="banner">
+      <h1>Discover Amazing Products</h1>
+      <p>Shop the latest trends with confidence. Free shipping on orders over $50.</p>
+    </div>
+    
+    <div class="categories">
+      <div class="category active">All Products</div>
+      <div class="category">Electronics</div>
+      <div class="category">Fashion</div>
+      <div class="category">Home & Kitchen</div>
+      <div class="category">Beauty</div>
+    </div>
+    
+    <div class="products">
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/api/placeholder/300/200" alt="Product Image">
+        </div>
+        <div class="product-info">
+          <div class="product-title">Premium Wireless Headphones</div>
+          <div class="product-price">$129.99</div>
+          <div class="product-description">Experience crystal-clear sound with our premium noise-canceling headphones.</div>
+          <div class="product-button">Add to Cart</div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/api/placeholder/300/200" alt="Product Image">
+        </div>
+        <div class="product-info">
+          <div class="product-title">Smart Watch Pro</div>
+          <div class="product-price">$199.99</div>
+          <div class="product-description">Track your fitness goals and stay connected with our latest smartwatch.</div>
+          <div class="product-button">Add to Cart</div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/api/placeholder/300/200" alt="Product Image">
+        </div>
+        <div class="product-info">
+          <div class="product-title">Ergonomic Office Chair</div>
+          <div class="product-price">$249.99</div>
+          <div class="product-description">Work in comfort with our premium ergonomic office chair with lumbar support.</div>
+          <div class="product-button">Add to Cart</div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/api/placeholder/300/200" alt="Product Image">
+        </div>
+        <div class="product-info">
+          <div class="product-title">Portable Bluetooth Speaker</div>
+          <div class="product-price">$79.99</div>
+          <div class="product-description">Take your music anywhere with this waterproof portable Bluetooth speaker.</div>
+          <div class="product-button">Add to Cart</div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/api/placeholder/300/200" alt="Product Image">
+        </div>
+        <div class="product-info">
+          <div class="product-title">Digital Camera Kit</div>
+          <div class="product-price">$549.99</div>
+          <div class="product-description">Capture perfect moments with our high-resolution digital camera package.</div>
+          <div class="product-button">Add to Cart</div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/api/placeholder/300/200" alt="Product Image">
+        </div>
+        <div class="product-info">
+          <div class="product-title">Stainless Steel Cookware Set</div>
+          <div class="product-price">$199.99</div>
+          <div class="product-description">Professional-grade cookware set for all your culinary adventures.</div>
+          <div class="product-button">Add to Cart</div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/api/placeholder/300/200" alt="Product Image">
+        </div>
+        <div class="product-info">
+          <div class="product-title">Fitness Tracker Band</div>
+          <div class="product-price">$49.99</div>
+          <div class="product-description">Monitor your daily activity and health metrics with this comfortable band.</div>
+          <div class="product-button">Add to Cart</div>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/api/placeholder/300/200" alt="Product Image">
+        </div>
+        <div class="product-info">
+          <div class="product-title">Ultra HD Smart TV</div>
+          <div class="product-price">$799.99</div>
+          <div class="product-description">Enjoy stunning 4K resolution and smart features for your entertainment needs.</div>
+          <div class="product-button">Add to Cart</div>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Shop</h3>
+          <ul>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Best Sellers</a></li>
+            <li><a href="#">Promotions</a></li>
+            <li><a href="#">Gift Cards</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Customer Service</h3>
+          <ul>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Shipping Information</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <ul>
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Pinterest</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 ShopEase. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+  
+  <script>
+    // Add scroll effects for header
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Add click handler for categories
+    const categories = document.querySelectorAll('.category');
+    categories.forEach(category => {
+      category.addEventListener('click', function() {
+        categories.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

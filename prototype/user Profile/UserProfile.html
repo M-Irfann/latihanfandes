@@ -3,12 +3,405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>My Account - [Shop Name]</title>
+    <link rel="stylesheet" href="shop-profile-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        
+        /* shop-profile-style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    color: #333;
+}
+
+.user-profile-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.profile-sidebar {
+    width: 280px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+.user-info-summary {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #007bff; /* Shop's primary color */
+}
+
+.user-name {
+    margin: 0 0 5px 0;
+    font-size: 1.4em;
+    color: #333;
+}
+
+.user-email {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+    word-break: break-all;
+}
+
+.profile-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-navigation li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #555;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1em;
+}
+
+.profile-navigation li a i {
+    margin-right: 12px;
+    width: 20px; /* For alignment */
+    text-align: center;
+    color: #007bff;
+}
+
+.profile-navigation li a:hover,
+.profile-navigation li a.active {
+    background-color: #e6f2ff; /* Light primary color background */
+    color: #0056b3; /* Darker primary color text */
+    font-weight: 500;
+}
+
+.profile-navigation li a.active i {
+    color: #0056b3;
+}
+
+
+/* Main Content Styles */
+.profile-content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #f9f9f9; /* Or a slightly different shade from body */
+}
+
+.profile-section {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom: 25px; /* Spacing between sections if multiple were visible */
+    display: none; /* Hide sections by default */
+}
+
+.profile-section.active-section {
+    display: block; /* Show the active section */
+}
+
+.profile-section h1 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Overview Widgets */
+.overview-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.widget {
+    background-color: #fdfdfd;
+    border: 1px solid #e7e7e7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.widget h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #007bff; /* Primary color for widget titles */
+}
+.widget h3 i {
+    margin-right: 8px;
+}
+
+.widget p {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.5;
+    min-height: 40px; /* Ensure consistent height before link */
+}
+.user-address {
+    font-style: italic;
+}
+
+.widget-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.widget-link:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .profile-sidebar {
+        width: 240px;
+    }
+    .user-name {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-profile-container {
+        flex-direction: column;
+    }
+    .profile-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        padding-bottom: 0; /* Adjust if needed */
+    }
+    .user-info-summary {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        padding: 15px;
+        border-bottom: none; /* Remove border if navigation is more compact */
+    }
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+        margin-right: 15px;
+        margin-bottom: 0;
+    }
+    .profile-navigation ul {
+        display: flex;
+        overflow-x: auto; /* Allow horizontal scrolling for nav items */
+        padding: 10px 0;
+        border-top: 1px solid #eee; /* Separator */
+
+    }
+    .profile-navigation li {
+        flex-shrink: 0; /* Prevent items from shrinking */
+        margin-right: 5px;
+    }
+    .profile-navigation li a {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    .profile-navigation li a i {
+        margin-right: 6px;
+    }
+    .profile-content {
+        padding: 20px;
+    }
+    .profile-section h1 {
+        font-size: 1.5em;
+    }
+    .overview-widgets {
+        grid-template-columns: 1fr; /* Stack widgets on smaller screens */
+    }
+}
     </style>
 </head>
 <body>
-    
+
+    <div class="user-profile-container">
+        <aside class="profile-sidebar">
+            <div class="user-info<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - [Shop Name]</title>
+    <link rel="stylesheet" href="shop-profile-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="user-profile-container">
+        <aside class="profile-sidebar">
+            <div class="user-info-summary">
+                <img src="user-avatar.png" alt="User Avatar" class="user-avatar">
+                <h2 class="user-name">Jane Doe</h2>
+                <p class="user-email">jane.doe@example.com</p>
+            </div>
+            <nav class="profile-navigation">
+                <ul>
+                    <li><a href="#overview" class="active"><i class="fas fa-user-circle"></i> Overview</a></li>
+                    <li><a href="#orders"><i class="fas fa-box-open"></i> My Orders</a></li>
+                    <li><a href="#addresses"><i class="fas fa-map-marker-alt"></i> My Addresses</a></li>
+                    <li><a href="#payment-methods"><i class="fas fa-credit-card"></i> Payment Methods</a></li>
+                    <li><a href="#wishlist"><i class="fas fa-heart"></i> Wishlist</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Account Settings</a></li>
+                    <li><a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="profile-content">
+            <section id="overview" class="profile-section active-section">
+                <h1>Account Overview</h1>
+                <div class="overview-widgets">
+                    <div class="widget">
+                        <h3><i class="fas fa-shopping-bag"></i> Recent Orders</h3>
+                        <p>You have 2 pending orders.</p>
+                        <a href="#orders" class="widget-link">View Orders</a>
+                    </div>
+                    <div class="widget">
+                        <h3><i class="fas fa-home"></i> Primary Shipping Address</h3>
+                        <p class="user-address">
+                            123 Green Street<br>
+                            Anytown, ST 12345<br>
+                            Country
+                        </p>
+                        <a href="#addresses" class="widget-link">Manage Addresses</a>
+                    </div>
+                    <div class="widget">
+                        <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                        <p>Update your password or security settings.</p>
+                        <a href="#settings" class="widget-link">Go to Settings</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="orders" class="profile-section">
+                <h1>My Orders</h1>
+                <p>Your order history will be displayed here...</p>
+                </section>
+
+            <section id="addresses" class="profile-section">
+                <h1>My Addresses</h1>
+                <p>Manage your shipping and billing addresses here...</p>
+                </section>
+
+            <section id="payment-methods" class="profile-section">
+                <h1>Payment Methods</h1>
+                <p>Manage your saved payment methods here...</p>
+            </section>
+
+            <section id="wishlist" class="profile-section">
+                <h1>Wishlist</h1>
+                <p>Your saved items will appear here...</p>
+            </section>
+
+            <section id="settings" class="profile-section">
+                <h1>Account Settings</h1>
+                <p>Update your profile information, email, or password here...</p>
+            </section>
+        </main>
+    </div>
+
+    <script src="shop-profile-script.js"></script>
+</body>
+</html>-summary">
+                <img src="user-avatar.png" alt="User Avatar" class="user-avatar">
+                <h2 class="user-name">Jane Doe</h2>
+                <p class="user-email">jane.doe@example.com</p>
+            </div>
+            <nav class="profile-navigation">
+                <ul>
+                    <li><a href="#overview" class="active"><i class="fas fa-user-circle"></i> Overview</a></li>
+                    <li><a href="#orders"><i class="fas fa-box-open"></i> My Orders</a></li>
+                    <li><a href="#addresses"><i class="fas fa-map-marker-alt"></i> My Addresses</a></li>
+                    <li><a href="#payment-methods"><i class="fas fa-credit-card"></i> Payment Methods</a></li>
+                    <li><a href="#wishlist"><i class="fas fa-heart"></i> Wishlist</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Account Settings</a></li>
+                    <li><a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="profile-content">
+            <section id="overview" class="profile-section active-section">
+                <h1>Account Overview</h1>
+                <div class="overview-widgets">
+                    <div class="widget">
+                        <h3><i class="fas fa-shopping-bag"></i> Recent Orders</h3>
+                        <p>You have 2 pending orders.</p>
+                        <a href="#orders" class="widget-link">View Orders</a>
+                    </div>
+                    <div class="widget">
+                        <h3><i class="fas fa-home"></i> Primary Shipping Address</h3>
+                        <p class="user-address">
+                            123 Green Street<br>
+                            Anytown, ST 12345<br>
+                            Country
+                        </p>
+                        <a href="#addresses" class="widget-link">Manage Addresses</a>
+                    </div>
+                    <div class="widget">
+                        <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                        <p>Update your password or security settings.</p>
+                        <a href="#settings" class="widget-link">Go to Settings</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="orders" class="profile-section">
+                <h1>My Orders</h1>
+                <p>Your order history will be displayed here...</p>
+                </section>
+
+            <section id="addresses" class="profile-section">
+                <h1>My Addresses</h1>
+                <p>Manage your shipping and billing addresses here...</p>
+                </section>
+
+            <section id="payment-methods" class="profile-section">
+                <h1>Payment Methods</h1>
+                <p>Manage your saved payment methods here...</p>
+            </section>
+
+            <section id="wishlist" class="profile-section">
+                <h1>Wishlist</h1>
+                <p>Your saved items will appear here...</p>
+            </section>
+
+            <section id="settings" class="profile-section">
+                <h1>Account Settings</h1>
+                <p>Update your profile information, email, or password here...</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        
+    </script>
 </body>
 </html>
