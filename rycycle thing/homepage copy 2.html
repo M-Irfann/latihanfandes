@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgenShop - Home Page</title>
+    <style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+        --primary-color: #ff7700;
+        --primary-light: #ff9e40;
+        --dark-text: #333;
+        --light-bg: #f8f9fa;
+        --white: #ffffff;
+        --gray-border: #e1e1e1;
+        --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    body {
+        background-color: var(--light-bg);
+        padding: 0;
+        color: var(--dark-text);
+    }
+
+    header {
+        display: flex;
+        position: fixed;
+        left: 0;
+        right: 0;
+        padding: 1rem 2rem;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--white);
+        width: 100%;
+        z-index: 100;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+    }
+
+    .logo {
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-icon {
+        margin-right: 8px;
+        font-size: 1.5rem;
+    }
+
+    .search-bar {
+        flex-grow: 1;
+        margin: 0 20px;
+        max-width: 600px;
+        position: relative;
+    }
+
+    .search-bar input {
+        width: 100%;
+        padding: 10px 16px 10px 40px;
+        border: 1px solid var(--gray-border);
+        border-radius: 24px;
+        font-size: 14px;
+        transition: all 0.2s ease;
+    }
+
+    .search-bar input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(255, 119, 0, 0.2);
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+    }
+
+    .nav-buttons {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .cart-btn, .login-btn {
+        padding: 8px 16px;
+        background-color: var(--white);
+        border: 1px solid var(--gray-border);
+        border-radius: 24px;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: all 0.2s ease;
+    }
+
+    .login-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+    }
+
+    .login-btn:hover {
+        background-color: var(--primary-light);
+    }
+
+    .cart-btn:hover {
+        background-color: #f5f5f5;
+    }
+
+    .icon {
+        margin-right: 6px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .banner {
+        padding: 8rem 1rem 5rem;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+        color: white;
+        text-align: center;
+        border-radius: 0 0 30px 30px;
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+        height: 300px;
+    }
+
+    .banner-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .banner h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .banner p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+
+    .shop-btn {
+        display: inline-block;
+        padding: 12px 28px;
+        background-color: white;
+        color: var(--primary-color);
+        text-decoration: none;
+        border-radius: 24px;
+        font-weight: bold;
+        transition: all 0.2s ease;
+    }
+
+    .shop-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .categories {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+
+    .category-pill {
+        padding: 8px 16px;
+        background-color: var(--white);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid var(--gray-border);
+    }
+
+    .category-pill:hover, .category-pill.active {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        padding-left: 0.5rem;
+        position: relative;
+    }
+
+    .section-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 24px;
+        background-color: var(--primary-color);
+        border-radius: 4px;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 1rem 0;
+    }
+
+    .product-card {
+        border: 1px solid var(--gray-border);
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: var(--white);
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+    }
+
+    .product-image {
+        height: 180px;
+        background-color: #f9f9f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .product-image img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+        transform: scale(1.05);
+    }
+
+    .product-info {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .product-category {
+        font-size: 0.8rem;
+        color: #666;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-title {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-height: 1.4;
+    }
+
+    .product-price {
+        font-weight: bold;
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        margin-top: auto;
+        margin-bottom: 0.5rem;
+    }
+
+    .add-to-cart {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    .add-to-cart:hover {
+        background-color: var(--primary-light);
+    }
+
+    footer {
+        background-color: var(--white);
+        padding: 2rem 0;
+        margin-top: 3rem;
+        border-top: 1px solid var(--gray-border);
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .footer-column {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .footer-column h3 {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .footer-column ul {
+        list-style: none;
+    }
+
+    .footer-column ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-column ul li a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .footer-column ul li a:hover {
+        color: var(--primary-color);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--gray-border);
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+        .products {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        header {
+            padding: 1rem;
+        }
+        
+        .search-bar {
+            margin: 0 10px;
+        }
+        
+        .products {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .banner {
+            padding: 7rem 1rem 4rem;
+            height: auto;
+        }
+        
+        .banner h1 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        header {
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .search-bar {
+            order: 3;
+            width: 100%;
+            margin: 0.5rem 0 0;
+        }
+        
+        .nav-buttons {
+            margin-left: auto;
+        }
+        
+        .products {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-column {
+            flex: 100%;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-icon">🛒</span>
+            AgenShop
+        </div>
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Search for products...">
+        </div>
+        <div class="nav-buttons">
+            <button class="cart-btn">
+                <span class="icon">🛒</span>
+                Cart
+            </button>
+            <button class="login-btn">
+                <span class="icon">👤</span>
+                Login
+            </button>
+        </div>
+    </header>
+
+    <div class="banner">
+        <div class="banner-content">
+            <h1>Welcome to AgenShop</h1>
+            <p>Discover amazing products at unbeatable prices</p>
+            <a href="#" class="shop-btn">Shop Now</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="categories">
+            <div class="category-pill active">All</div>
+            <div class="category-pill">Electronics</div>
+            <div class="category-pill">Fashion</div>
+            <div class="category-pill">Home</div>
+            <div class="category-pill">Beauty</div>
+            <div class="category-pill">Sports</div>
+        </div>
+
+        <h2 class="section-title">Featured Products</h2>
+        
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/api/placeholder/300/180" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Electronics</div>
+                    <h3 class="product-title">Wireless Bluetooth Headphones with Noise Cancellation</h3>
+                    <div class="product-price">$79.99</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/api/placeholder/300/180" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Fashion</div>
+                    <h3 class="product-title">Premium Cotton T-Shirt</h3>
+                    <div class="product-price">$24.95</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/api/placeholder/300/180" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Home</div>
+                    <h3 class="product-title">Stainless Steel Kitchen Knife Set with Block</h3>
+                    <div class="product-price">$129.99</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/api/placeholder/300/180" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Beauty</div>
+                    <h3 class="product-title">Natural Organic Face Moisturizer with SPF 30</h3>
+                    <div class="product-price">$34.50</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">New Arrivals</h2>
+        
+        <div class="products">
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/api/placeholder/300/180" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Sports</div>
+                    <h3 class="product-title">Professional Yoga Mat with Carrying Strap</h3>
+                    <div class="product-price">$42.99</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/api/placeholder/300/180" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Electronics</div>
+                    <h3 class="product-title">Smart Watch with Heart Rate Monitor</h3>
+                    <div class="product-price">$149.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/api/placeholder/300/180" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Home</div>
+                    <h3 class="product-title">Aromatherapy Essential Oil Diffuser</h3>
+                    <div class="product-price">$39.95</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="/api/placeholder/300/180" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Fashion</div>
+                    <h3 class="product-title">Leather Casual Sneakers for Men and Women</h3>
+                    <div class="product-price">$89.99</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Deals & Promotions</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Information</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AgenShop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
