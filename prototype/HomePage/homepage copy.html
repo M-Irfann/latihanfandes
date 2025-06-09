@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff7700',
+                        'primary-dark': '#e66d00',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <div class="max-w-full mx-auto bg-gray-200">
+        <!-- Header -->
+        <header class="flex fixed left-0 right-0 px-8 py-4 justify-between items-center bg-white w-full z-50 shadow-lg transition-all duration-300 md:flex-row flex-col gap-2">
+            <div class="px-4 py-2 rounded-lg font-bold text-2xl text-primary flex items-center">
+                AgenShop
+            </div>
+            <div class="flex-grow mx-8 relative md:w-auto w-full md:mx-8 mx-0 md:my-0 my-2">
+                <input 
+                    type="text" 
+                    placeholder="Search" 
+                    class="w-full py-3 px-4 pl-10 border border-gray-300 rounded-full text-base transition-all duration-300 bg-gray-100 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-20 focus:bg-white"
+                >
+                <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-base">
+                    🔍
+                </div>
+            </div>
+            <button class="px-6 py-2 bg-primary text-white border-none rounded-full font-semibold cursor-pointer transition-all duration-300 shadow-lg hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-xl">
+                Login / Register
+            </button>
+        </header>
+
+        <!-- Banner -->
+        <div class="pt-40 pb-20 px-8 bg-gradient-to-br from-primary to-orange-400 text-white text-center rounded-b-3xl mb-8">
+            <h1 class="text-4xl font-bold mb-4">Belanja Hemat Pasti Puas</h1>
+            <p class="text-lg max-w-2xl mx-auto mb-6 opacity-90">
+                Lengkapi kebutuhan bulanan Anda dan nikmati gratis ongkir setiap pembelian.
+            </p>
+        </div>
+        
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2">
+            <div class="flex border border-gray-300 rounded-xl p-0 h-44 overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-lg hover:border-primary">
+                <!-- Product Image -->
+                <div class="flex bg-gray-50 w-2/5 h-full items-center justify-center p-4 relative overflow-hidden">
+                    <img 
+                        src="https://via.placeholder.com/150x150?text=Product" 
+                        alt="Product Image" 
+                        class="max-w-full max-h-full object-contain transition-transform duration-500"
+                    >
+                </div>
+                
+                <!-- Product Text -->
+                <div class="flex flex-col w-3/5 h-full p-4 gap-2 relative">
+                    <p class="text-base font-semibold text-left overflow-hidden line-clamp-2 leading-5 mb-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quam officiis accusantium aliquid aperiam veritatis deserunt, quos consectetur neque quaerat numquam facilis optio vitae dolor quibusdam culpa repellendus sequi quo.
+                    </p>
+                    
+                    <div class="flex items-center gap-1 mb-1">
+                        <div class="text-yellow-400 text-sm">★★★★☆</div>
+                        <div class="text-xs text-gray-500">(142)</div>
+                    </div>
+                    
+                    <div class="text-base font-semibold text-gray-800">Rp 12.000.000</div>
+                    
+                    <button class="absolute bottom-4 right-4 bg-primary text-white border-none rounded-2xl px-4 py-2 text-sm font-semibold cursor-pointer transition-all duration-300 hover:bg-primary-dark hover:-translate-y-0.5">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Additional product cards for demonstration -->
+            <div class="flex border border-gray-300 rounded-xl p-0 h-44 overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-lg hover:border-primary">
+                <div class="flex bg-gray-50 w-2/5 h-full items-center justify-center p-4 relative overflow-hidden">
+                    <img 
+                        src="https://via.placeholder.com/150x150?text=Product+2" 
+                        alt="Product Image" 
+                        class="max-w-full max-h-full object-contain transition-transform duration-500"
+                    >
+                </div>
+                <div class="flex flex-col w-3/5 h-full p-4 gap-2 relative">
+                    <p class="text-base font-semibold text-left overflow-hidden line-clamp-2 leading-5 mb-1">
+                        Another great product with amazing features and quality materials
+                    </p>
+                    <div class="flex items-center gap-1 mb-1">
+                        <div class="text-yellow-400 text-sm">★★★★★</div>
+                        <div class="text-xs text-gray-500">(89)</div>
+                    </div>
+                    <div class="text-base font-semibold text-gray-800">Rp 8.500.000</div>
+                    <button class="absolute bottom-4 right-4 bg-primary text-white border-none rounded-2xl px-4 py-2 text-sm font-semibold cursor-pointer transition-all duration-300 hover:bg-primary-dark hover:-translate-y-0.5">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex border border-gray-300 rounded-xl p-0 h-44 overflow-hidden bg-white transition-all duration-300 shadow-sm hover:shadow-lg hover:border-primary">
+                <div class="flex bg-gray-50 w-2/5 h-full items-center justify-center p-4 relative overflow-hidden">
+                    <img 
+                        src="https://via.placeholder.com/150x150?text=Product+3" 
+                        alt="Product Image" 
+                        class="max-w-full max-h-full object-contain transition-transform duration-500"
+                    >
+                </div>
+                <div class="flex flex-col w-3/5 h-full p-4 gap-2 relative">
+                    <p class="text-base font-semibold text-left overflow-hidden line-clamp-2 leading-5 mb-1">
+                        Premium quality product with excellent customer reviews
+                    </p>
+                    <div class="flex items-center gap-1 mb-1">
+                        <div class="text-yellow-400 text-sm">★★★★☆</div>
+                        <div class="text-xs text-gray-500">(256)</div>
+                    </div>
+                    <div class="text-base font-semibold text-gray-800">Rp 15.750.000</div>
+                    <button class="absolute bottom-4 right-4 bg-primary text-white border-none rounded-2xl px-4 py-2 text-sm font-semibold cursor-pointer transition-all duration-300 hover:bg-primary-dark hover:-translate-y-0.5">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</body>
+</html>

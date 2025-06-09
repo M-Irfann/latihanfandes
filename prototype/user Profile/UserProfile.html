@@ -1,127 +1,391 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>User Profile - AgenShop</title>
     <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  body {
-    background-color: #e9e9e9;
-    color: #333333;
-  }
-
-  header {
-    display: flex;
-    position: fixed;
-    left: 0;
-    right: 0;
-    padding: 1rem 2rem;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    width: 100%;
-    z-index: 100;
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-}
-.logo {
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: #ff7700;
-    display: flex;
-    align-items: center;
-}
-.search-bar {
-  flex-grow: 1;
-  margin: 0 2rem;
-  position: relative;
-}
-
-.search-bar input {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  border: 1px solid #ddd;
-  border-radius: 50px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background-color: #f5f5f5;
-}
-    
-.search-bar::before {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #666666;
-  font-size: 1rem;
-}
-
-.search-bar {
-  flex-grow: 1;
-  margin: 0 2rem;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-
-
-.search-btn {
-  padding: 0.75rem 1.25rem;
-  background-color: #ff7700;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-left: -50px;
-  box-shadow: 0 2px 5px rgba(255, 119, 0, 0.3);
-}
-
-.search-btn:hover {
-  background-color: #e66d00;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(255, 119, 0, 0.4);
-}
-
-.login-btn {
-  padding: 0.6rem 1.5rem;
-  background-color: #ff7700;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(255, 119, 0, 0.3);
-}
-    
-.login-btn:hover {
-  background-color: #e66d00;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(255, 119, 0, 0.4);
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f1f1f1;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            color: #FF7200;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .search-bar {
+            width: 60%;
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            outline: none;
+        }
+        
+        .auth-button {
+            background-color: #FF7200;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .banner {
+            background-color: #FF7200;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .banner h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        
+        .profile-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .profile-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .profile-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .profile-tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .profile-tab.active {
+            border-bottom-color: #FF7200;
+            color: #FF7200;
+            font-weight: bold;
+        }
+        
+        .profile-content {
+            padding: 20px;
+        }
+        
+        .profile-section {
+            margin-bottom: 30px;
+        }
+        
+        .profile-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .save-button {
+            background-color: #FF7200;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .order-card {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-items {
+            margin-bottom: 10px;
+        }
+        
+        .order-item {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .order-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        
+        .item-details {
+            flex-grow: 1;
+        }
+        
+        .item-name {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .item-price {
+            color: #FF7200;
+        }
+        
+        .order-total {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            background-color: #e8f4ff;
+            color: #0066cc;
+            font-size: 12px;
+        }
+        
+        .order-status.delivered {
+            background-color: #e8f8e8;
+            color: #00994d;
+        }
+        
+        .address-card {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .address-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .address-action {
+            color: #555;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .address-default {
+            background-color: #fff5e8;
+            color: #FF7200;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            margin-top: 10px;
+            display: inline-block;
+        }
     </style>
+
 </head>
 <body>
-        <header>
-        <div class="logo">AgenShop</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search">
-            <button class="search-btn">🔍</button>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.profile-tab');
+        const sections = document.querySelectorAll('.profile-section');
+        
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                
+                // Hide all sections
+                sections.forEach(s => s.style.display = 'none');
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Show corresponding section
+                sections[index].style.display = 'block';
+            });
+        });
+    });
+    </script>
+    <!-- Header -->
+    <div class="header">
+        <a href="#" class="logo">AgenShop</a>
+        <input type="text" class="search-bar" placeholder="Search">
+        <div>
+            <button class="auth-button">Logout</button>
         </div>
-        <button class="login-btn">Login / Register</button>
-    </header>
+    </div>
+    
+    <!-- Banner -->
+    <div class="banner">
+        <h1>Profil Pengguna</h1>
+        <p>Kelola akun, alamat pengiriman, dan riwayat belanja Anda</p>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-header">
+                <h2>Selamat datang, Budi Santoso</h2>
+                <p>Member sejak 12 Januari 2023</p>
+            </div>
+            
+            <div class="profile-tabs">
+                <div class="profile-tab active">Akun Saya</div>
+                <div class="profile-tab">Alamat</div>
+                <div class="profile-tab">Wishlist</div>
+            </div>
+            
+            <div class="profile-content">
+                <!-- Personal Information Section -->
+                <div class="profile-section">
+                    <h3>Informasi Pribadi</h3>
+                    <form>
+                      <div class="form-group">
+                          <label for="name">Nama Lengkap</label>
+                          <input type="text" id="name" class="form-control" value="Budi Santoso">
+                      </div>
+                      <div class="form-group">
+                          <label for="email">Email</label>
+                          <input type="email" id="email" class="form-control" value="budi.santoso@email.com">
+                      </div>
+                      <div class="form-group">
+                          <label for="phone">Nomor Telepon</label>
+                          <input type="tel" id="phone" class="form-control" value="081234567890">
+                      </div>
+                      <div class="form-group">
+                        <label for="birthday">Tanggal Lahir</label>
+                        <input type="date" id="birthday" class="form-control" value="1990-05-15">
+                      </div>
+                      <button type="submit" class="save-button">Simpan Perubahan</button>
+                    </form>
+                      <!-- Password Change Section -->    
+                    <h3 style="margin-top: 30px;">Ubah Password</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="current-password">Password Saat Ini</label>
+                            <input type="password" id="current-password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">Password Baru</label>
+                            <input type="password" id="new-password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Konfirmasi Password Baru</label>
+                            <input type="password" id="confirm-password" class="form-control">
+                        </div>
+                        <button type="submit" class="save-button">Ubah Password</button>
+                    </form>
+                </div>
+                
+                <!-- Display for Address Tab (Hidden by default) -->
+                <div class="profile-section" style="display: none;">
+                    <h3>Alamat Pengiriman</h3>
+                    
+                    <div class="address-card">
+                        <div class="address-actions">
+                            <span class="address-action">Edit</span>
+                            <span class="address-action">Hapus</span>
+                        </div>
+                        <strong>Budi Santoso</strong>
+                        <p>081234567890</p>
+                        <p>Jalan Merdeka No. 123</p>
+                        <p>Kelurahan Sejahtera, Kecamatan Makmur</p>
+                        <p>Jakarta Selatan, DKI Jakarta 12345</p>
+                        <div class="address-default">Alamat Utama</div>
+                    </div>
+                    
+                    <div class="address-card">
+                        <div class="address-actions">
+                            <span class="address-action">Edit</span>
+                            <span class="address-action">Hapus</span>
+                            <span class="address-action">Jadikan Utama</span>
+                        </div>
+                        <strong>Budi Santoso (Kantor)</strong>
+                        <p>081234567890</p>
+                        <p>Gedung Persada Lantai 5</p>
+                        <p>Jalan Sudirman No. 456</p>
+                        <p>Jakarta Pusat, DKI Jakarta 10220</p>
+                    </div>
+                    
+                    <button class="save-button">+ Tambah Alamat Baru</button>
+                </div>
+                
+                <!-- Display for Wishlist Tab (Hidden by default) -->
+                <div class="profile-section" style="display: none;">
+                    <h3>Wishlist Saya</h3>
+                    
+                    <div class="order-item">
+                        <img src="/api/placeholder/60/60" alt="Product">
+                        <div class="item-details">
+                            <div class="item-name">Susu Ultra Milk 1L</div>
+                            <div class="item-price">Rp 16.500</div>
+                        </div>
+                        <button class="save-button">+ Keranjang</button>
+                    </div>
+                    
+                    <div class="order-item">
+                        <img src="/api/placeholder/60/60" alt="Product">
+                        <div class="item-details">
+                            <div class="item-name">Teh Sosro Kotak 200ml (24 pcs)</div>
+                            <div class="item-price">Rp 65.000</div>
+                        </div>
+                        <button class="save-button">+ Keranjang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

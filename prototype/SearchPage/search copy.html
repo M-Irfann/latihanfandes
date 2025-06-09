@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'orange-primary': '#ff7700',
+                        'orange-hover': '#e66d00',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 bg-white shadow-md transition-all duration-300">
+        <div class="flex items-center px-4 py-2 rounded-lg font-bold text-2xl text-orange-primary">
+            AgenShop
+        </div>
+        
+        <div class="flex-1 mx-8 relative flex items-center">
+            <input 
+                type="text" 
+                placeholder="Search" 
+                class="w-full py-3 pl-10 pr-4 bg-gray-50 border border-gray-300 rounded-full text-base transition-all duration-300 focus:outline-none focus:border-orange-primary focus:bg-white"
+            >
+            <button class="absolute right-0 px-5 py-3 bg-orange-primary text-white border-none rounded-full font-semibold cursor-pointer transition-all duration-300 hover:bg-orange-hover hover:-translate-y-0.5 shadow-lg hover:shadow-xl">
+                🔍
+            </button>
+        </div>
+        
+        <button class="px-6 py-2.5 bg-orange-primary text-white border-none rounded-full font-semibold cursor-pointer transition-all duration-300 hover:bg-orange-hover hover:-translate-y-0.5 shadow-lg hover:shadow-xl">
+            Login / Register
+        </button>
+    </header>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-24 px-4 pb-8">
+        <!-- Product Card -->
+        <div class="flex border border-gray-300 rounded-xl h-44 overflow-hidden bg-white transition-all duration-300 hover:shadow-lg hover:border-orange-primary shadow-sm">
+            <!-- Product Image -->
+            <div class="flex items-center justify-center w-2/5 h-full bg-gray-50 p-4 relative overflow-hidden">
+                <div class="w-20 h-20 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-xs">
+                    No Image
+                </div>
+            </div>
+            
+            <!-- Product Text -->
+            <div class="flex flex-col w-3/5 h-full p-4 gap-2 relative">
+                <p class="text-base font-semibold text-left line-clamp-2 leading-tight mb-1">
+                    Wireless Bluetooth Headphones with Noise Cancellation
+                </p>
+                
+                <div class="flex items-center gap-1 mb-1">
+                    <div class="text-yellow-400 text-sm">★★★★☆</div>
+                    <div class="text-xs text-gray-600">(142)</div>
+                </div>
+                
+                <div class="text-lg font-bold text-gray-800">$79.99</div>
+            </div>
+        </div>
+
+        <!-- Additional Product Cards for Demo -->
+        <div class="flex border border-gray-300 rounded-xl h-44 overflow-hidden bg-white transition-all duration-300 hover:shadow-lg hover:border-orange-primary shadow-sm">
+            <div class="flex items-center justify-center w-2/5 h-full bg-gray-50 p-4 relative overflow-hidden">
+                <div class="w-20 h-20 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-xs">
+                    No Image
+                </div>
+            </div>
+            <div class="flex flex-col w-3/5 h-full p-4 gap-2 relative">
+                <p class="text-base font-semibold text-left line-clamp-2 leading-tight mb-1">
+                    Smart Watch with Health Monitoring
+                </p>
+                <div class="flex items-center gap-1 mb-1">
+                    <div class="text-yellow-400 text-sm">★★★★★</div>
+                    <div class="text-xs text-gray-600">(89)</div>
+                </div>
+                <div class="text-lg font-bold text-gray-800">$199.99</div>
+            </div>
+        </div>
+
+        <div class="flex border border-gray-300 rounded-xl h-44 overflow-hidden bg-white transition-all duration-300 hover:shadow-lg hover:border-orange-primary shadow-sm">
+            <div class="flex items-center justify-center w-2/5 h-full bg-gray-50 p-4 relative overflow-hidden">
+                <div class="w-20 h-20 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-xs">
+                    No Image
+                </div>
+            </div>
+            <div class="flex flex-col w-3/5 h-full p-4 gap-2 relative">
+                <p class="text-base font-semibold text-left line-clamp-2 leading-tight mb-1">
+                    Gaming Mechanical Keyboard RGB
+                </p>
+                <div class="flex items-center gap-1 mb-1">
+                    <div class="text-yellow-400 text-sm">★★★★☆</div>
+                    <div class="text-xs text-gray-600">(256)</div>
+                </div>
+                <div class="text-lg font-bold text-gray-800">$129.99</div>
+            </div>
+        </div>
+
+        <div class="flex border border-gray-300 rounded-xl h-44 overflow-hidden bg-white transition-all duration-300 hover:shadow-lg hover:border-orange-primary shadow-sm">
+            <div class="flex items-center justify-center w-2/5 h-full bg-gray-50 p-4 relative overflow-hidden">
+                <div class="w-20 h-20 bg-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-xs">
+                    No Image
+                </div>
+            </div>
+            <div class="flex flex-col w-3/5 h-full p-4 gap-2 relative">
+                <p class="text-base font-semibold text-left line-clamp-2 leading-tight mb-1">
+                    Wireless Charging Pad Fast Charge
+                </p>
+                <div class="flex items-center gap-1 mb-1">
+                    <div class="text-yellow-400 text-sm">★★★☆☆</div>
+                    <div class="text-xs text-gray-600">(73)</div>
+                </div>
+                <div class="text-lg font-bold text-gray-800">$39.99</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

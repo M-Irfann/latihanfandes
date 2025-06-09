@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'orange-custom': '#ff7700',
+                        'orange-hover': '#e66d00',
+                    },
+                    fontFamily: {
+                        'segoe': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for search button positioning */
+        .search-container {
+            position: relative;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-segoe m-0 p-0 box-border">
+    <header class="flex fixed left-0 right-0 px-8 py-4 justify-between items-center bg-white w-full z-50 shadow-lg transition-all duration-300 ease-in-out">
+        <div class="logo px-4 py-2 rounded-lg font-bold text-2xl text-orange-custom flex items-center">
+            AgenShop
+        </div>
+        
+        <div class="search-container flex-grow mx-8 relative flex items-center">
+            <input 
+                type="text" 
+                placeholder="Search" 
+                class="w-full py-3 px-4 pl-10 border border-gray-300 rounded-full text-base transition-all duration-300 ease-in-out bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-custom focus:border-transparent"
+            >
+            <button class="absolute right-0 top-0 bottom-0 px-5 bg-orange-custom text-white border-none rounded-full font-semibold cursor-pointer transition-all duration-300 ease-in-out shadow-lg hover:bg-orange-hover hover:-translate-y-0.5 hover:shadow-xl">
+                Search
+            </button>
+        </div>
+        
+        <button class="px-6 py-2.5 bg-orange-custom text-white border-none rounded-full font-semibold cursor-pointer transition-all duration-300 ease-in-out shadow-lg hover:bg-orange-hover hover:-translate-y-0.5 hover:shadow-xl">
+            Login / Register
+        </button>
+    </header>
+</body>
+</html>
