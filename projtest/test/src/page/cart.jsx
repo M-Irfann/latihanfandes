@@ -91,7 +91,7 @@ export default function ShoppingCart() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-8 px-4">
+    <div className="bg-gray-50 min-h-screen py-8 px-4 pt-20">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">

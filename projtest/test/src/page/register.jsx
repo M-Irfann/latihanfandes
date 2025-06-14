@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 
-const LoginPage = () => {
+const Page = () => {
   const [formData, setFormData] = useState({
+    namalengkap: '',
     email: '',
+    username:'',
     password: ''
   });
   const [errors, setErrors] = useState({});
@@ -84,6 +86,51 @@ const LoginPage = () => {
         <h1 className="text-center text-orange-500 text-2xl font-bold mt-0 mb-5">Login</h1>
         
         <div className="space-y-5">
+
+          {/* Full Name Field */}
+          <div className="mb-5">
+            <label htmlFor="FullName" className="block mb-2 font-bold text-orange-500">
+              Full Name
+            </label>
+            <input 
+              type="text" 
+              id="FullName" 
+              name="FullName" 
+              value={formData.namalengkap}
+              onChange={handleInputChange}
+              required
+              className={`w-full p-3 border rounded-md box-border text-base focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 ${
+                errors.email ? 'border-red-500' : 'border-gray-300'
+              }`}
+              placeholder="Enter Full Name"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
+          </div>
+
+          {/* Number Field */}
+          <div className="mb-5">
+            <label htmlFor="number" className="block mb-2 font-bold text-orange-500">
+              Phone Number
+            </label>
+            <input 
+              type="number" 
+              id="number" 
+              name="number" 
+              value={formData.namalengkap}
+              onChange={handleInputChange}
+              required
+              className={`w-full p-3 border rounded-md box-border text-base focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 ${
+                errors.email ? 'border-red-500' : 'border-gray-300'
+              }`}
+              placeholder="Enter Phone Number"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
+          </div>
+
           {/* Email Field */}
           <div className="mb-5">
             <label htmlFor="email" className="block mb-2 font-bold text-orange-500">
@@ -154,19 +201,14 @@ const LoginPage = () => {
 
         {/* Additional Links */}
         <div className="mt-6 text-center space-y-2">
-          <button 
-            onClick={handleForgotPassword}
-            className="text-sm text-orange-500 hover:text-orange-600 block w-full bg-transparent border-none cursor-pointer"
-          >
-            Forgot Password?
-          </button>
+          
           <p className="text-sm text-gray-600">
-            Don't have an account? 
+            have an account? 
             <button 
               onClick={handleSignUp}
               className="text-orange-500 hover:text-orange-600 font-medium ml-1 bg-transparent border-none cursor-pointer"
             >
-              Sign up
+              Login
             </button>
           </p>
         </div>
@@ -175,4 +217,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Page;

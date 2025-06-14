@@ -97,8 +97,8 @@ const ProductDetailsPage = () => {
   return (
     <div className="bg-orange-50 text-gray-800 font-sans leading-relaxed pt-5">
       {/* Product Container */}
-      <div className="flex flex-wrap p-5 m-5 bg-white rounded-2xl">
-        {/* Product Gallery */}
+      <div className="flex flex-wrap p-5 m-5 bg-white rounded-2xl mt-20">
+        {/* Product Gallery */} 
         <div className="flex-1 min-w-80 pr-5 md:pr-5 mb-8 md:mb-0">
           <div className="w-full h-96 bg-gray-100 rounded border border-gray-200 mb-4 flex items-center justify-center overflow-hidden">
             <img 

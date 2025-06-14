@@ -61,7 +61,7 @@ export default function AgenShop() {
   };
 
   return (
-    <div className="bg-gray-100 text-gray-800 font-sans">
+    <div className="bg-gray-100 text-gray-800 font-sans pt-20">
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-4 px-4 pb-8">

@@ -91,7 +91,7 @@ export default function AgenShopProfile() {
   };
 
   return (
-    <div className="bg-gray-100 font-sans min-h-screen">
+    <div className="bg-gray-100 font-sans min-h-screen pt-20">
       
       {/* Banner */}
       <div className="bg-orange-500 text-white py-10 px-5 text-center">
