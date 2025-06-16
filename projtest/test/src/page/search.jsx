@@ -1,7 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function AgenShop() {
+export default function pageSearch() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [product,setProduct] = useState([])
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const keyword = query.get('q');
+  const navigate = useNavigate
+
+
+  useEffect(()=>{
+    if(!keyword   || keyword.trim() === ""){
+      navigate("/");
+    }
+    const fetchhCard = async() => {
+      try{
+        const response = await fetch(`http://localhost:3024/products?q=${keyword}`);
+        const data = await response.json();
+      }catch(e){
+        console.log("eror fetch :",e)
+      }
+    }
+
+
+  },[keyword,navigate]);
   
   const products = [
     {
@@ -55,10 +78,7 @@ export default function AgenShop() {
     // Add search functionality here
   };
 
-  const handleLogin = () => {
-    console.log('Login clicked');
-    // Add login functionality here
-  };
+
 
   return (
     <div className="bg-gray-100 text-gray-800 font-sans pt-20">

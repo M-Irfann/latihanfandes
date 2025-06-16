@@ -1,10 +1,45 @@
   {
-    "test":"hello amd ot works",
-    "data":{
-      "notes":"notes",
-      "id":{
-        "test":"nested",
-        "amburadul":"wadaw"
+    
+    "products": [
+      {
+        "id": 1,
+        "name": "Toothpaste",
+        "category": "Personal Care",
+        "price": 12000,
+        "stock": 30,
+        "unit": "pcs"
+      },
+      {
+        "id": 2,
+        "name": "Rice 5kg",
+        "category": "Food",
+        "price": 60000,
+        "stock": 15,
+        "unit": "pack"
+      },
+      {
+        "id": 3,
+        "name": "Laundry Detergent",
+        "category": "Household",
+        "price": 25000,
+        "stock": 20,
+        "unit": "bottle"
+      },
+      {
+        "id": 4,
+        "name": "Instant Noodles",
+        "category": "Food",
+        "price": 3000,
+        "stock": 100,
+        "unit": "pcs"
+      },
+      {
+        "id": 5,
+        "name": "Shampoo",
+        "category": "Personal Care",
+        "price": 18000,
+        "stock": 25,
+        "unit": "bottle"
       }
-    }
+    ]
   }
